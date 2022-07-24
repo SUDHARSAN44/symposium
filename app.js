@@ -24,7 +24,7 @@ app.engine('ejs',ejsMate)
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'))
 
-const dbUrl = process.env.dbUrl || 'mongodb+srv://sudharsan44:9952723175@symposium.r5l7tod.mongodb.net/?retryWrites=true&w=majority'
+const dbUrl = process.env.dbUrl || 'mongodb+srv://sudharsan44:9952723175@symposium.r5l7tod.mongodb.net/test?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 710
 const connectDB=async()=>{await mongoose.connect(dbUrl)}
 
@@ -45,7 +45,6 @@ const store = new MongoDBStore({
 store.on("error", function (e) {
     console.log("SESSION STORE ERROR", e)
 })
-
 
 
 

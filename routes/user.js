@@ -1,16 +1,9 @@
-const mongoose = require('mongoose')
 const express = require('express')
 const router = express.Router();
 const events = require('../models/events')
 const user = require('../models/user')
-const catchAsync = require('../utils/catchAsync')
 const passport = require('passport')
-const LocalStrategy = require('passport-local')
-const flash = require('connect-flash')
-var cookieParser = require('cookie-parser');
-var session      = require('express-session');
 const { isLoggedIn } = require('../middleware/isLoggedIn');
-const MongoDBStore = require("connect-mongodb-session")(session);
 
 
 router.get('/register',(req,res)=>{
