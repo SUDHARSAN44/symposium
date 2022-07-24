@@ -1,3 +1,4 @@
+const secret = process.env.secret || 'thisshouldbeabettersecret!'
 const mongoose = require('mongoose')
 const express = require('express')
 const ejsMate = require('ejs-mate')
@@ -16,7 +17,7 @@ const {isLoggedIn} = require('./middleware/isLoggedIn')
 const dotenv = require('dotenv')
 dotenv.config()
 const app = express()
-const secret = process.env.secret || 'thisshouldbeabettersecret!'
+
 app.use(express.urlencoded({extended:true}))
 
 app.engine('ejs',ejsMate)
@@ -146,6 +147,6 @@ app.post('/admin/addEvents',(req,res)=>{
 
 
 
-app.listen(710,()=>{
+app.listen(process.env.PORT,()=>{
     console.log(`Serving on port 710`)
 })
