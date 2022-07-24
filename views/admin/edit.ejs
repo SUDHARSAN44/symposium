@@ -1,0 +1,74 @@
+<%-layout('layouts/boilerplate')%>
+<style>
+    label{
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+        body{
+            background-color: #ECECEC;
+        }
+    
+</style>
+
+    <div class="container mt-5 p-4 bg-white">
+     
+        <div class="row">
+            <div class="col-6 px-5">
+                <a href="/admin/aevents" style="text-decoration:none;color:black">
+                    <h4>Add Event</h4>
+                </a>
+                <img src="https://i.im.ge/2022/07/20/F1PhZr.png" alt="" class="img-fluid">
+            </div>
+            <div class="col-5 py-4 m-2" style="background-color: #ECECEC ;padding: 0px 50px;margin: 0px 0px;">
+                <h3 class="text-center"><b>Event Information</b></h3>
+
+                <form action="/admin/<%=c._id%>/edit" id="form" method="post">
+
+
+                    <label for=""><b>Event Name</b></label>
+                    <input class="form-control" type="text" name="event[name]" id="name" required value="<%=c.name%>">
+
+                    <label for=""><b>Event Description</b></label>
+                    <input class="form-control" type="text" name="event[desc]" id="desc" required value="<%=c.desc%>">
+                    
+                    <label for=""><b>Event URL</b></label>
+                    <input class="form-control" type="text" name="event[url]" id="url" required value="<%=c.url%>">
+                    
+                    <label for=""><b>Event Date</b></label>
+                    <input class="form-control" type="date" name="event[date]" id="date" required value="<%=Date.now()%>">
+                    
+                    <div class="row">
+                        <div class="col">
+                            <label for=""><b>Start Time</b></label>
+                            <input class="form-control" type="time" name="event[s_time]" id="st" required value="<%=c.s_date%>">
+                        </div>
+
+                        <div class="col">
+                            <label for=""><b>End Time</b></label>
+                            <input class="form-control" type="time" name="event[e_time]" id="et" required value="<%=c.e_date%>"> 
+                        </div>
+                        <p style="color:red" id="error"></p>
+                    </div>
+                </form>
+                    <div class="row mt-5">
+                        <div class="col-6">
+                            <form action="/admin/delete/<%=c._id %>" method="post">
+                                <button class="btn">Delete Event</button>
+                                
+                            </form> 
+                        </div>
+
+                        <div class="col-6">
+                            <button class="btn btn-info" onclick="fun()">ADD EVENT</button>
+                        </div>
+                       
+        
+                            </div>
+                        </div>
+                    </div>
+
+
+               
+            </div>
+        </div>
+    </div>

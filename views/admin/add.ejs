@@ -1,0 +1,63 @@
+<%-layout('layouts/boilerplate')%>
+    <style>
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        body {
+            background-color: #ECECEC;
+        }
+    </style>
+
+    <div class="container my-5 p-4 bg-white">
+
+        <div class="row">
+            <div class="col-6 px-5">
+                <a href="/admin/aevents" style="text-decoration:none;color:black">
+                    <button style="border:none ;" ><img style="width: 20px" src='https://i.ibb.co/2nSBXB2/arrow-removebg-preview.png'/></button><span>Add Event</span>
+                </a>
+                <img src="https://i.im.ge/2022/07/20/F1PhZr.png" alt="" class="img-fluid">
+            </div>
+            <div class="col-5 py-4 m-2" style="background-color: #ECECEC ;padding: 0px 50px;margin: 0px 0px;">
+                <h3 class="text-center"><b>Event Information</b></h3>
+                <form action="/admin/addEvents" method="post">
+                    <label for=""><b>Event Name</b></label>
+                    <input class="form-control" type="text" name="event[name]" id="name" required >
+
+                    <label for=""><b>Event Description</b></label>
+                    <input class="form-control" type="text" name="event[desc]" id="desc" required >
+                    
+                    <label for=""><b>Event URL</b></label>
+                    <input class="form-control" type="text" name="event[url]" id="url" required >
+                    
+                    <label for=""><b>Event Date</b></label>
+                    <input class="form-control" type="date" name="event[date]" id="date" required >
+                    
+                    <div class="row">
+                        <div class="col">
+                            <label for=""><b>Start Time</b></label>
+                            <input class="form-control" type="time" name="event[s_time]" id="st" required >
+                        </div>
+
+                        <div class="col">
+                            <label for=""><b>End Time</b></label>
+                            <input class="form-control" type="time" name="event[e_time]" id="et" required > 
+                        </div>
+                        <p style="color:red" id="error"></p>
+                    </div>
+                    
+
+                    <div class="row mt-5">
+                        <div class="col-6 f-right">
+                            <a href="/admin/aevents" class="btn">Cancel</a>
+                        </div>
+
+                        <div class="col-6">
+                            <button class="btn fs-6" onclick="fun1()">Add Event</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
