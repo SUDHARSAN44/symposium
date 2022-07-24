@@ -37,7 +37,7 @@ connectDB().then(()=>{
 // const secret ='thisshouldbeabettersecret!';
 
 const store = new MongoDBStore({
-    url: dbUrl,
+    url: process.env.dbUrl,
     secret,
     touchAfter: 24 * 60 * 60
 });
@@ -135,6 +135,9 @@ app.post('/admin/addEvents',(req,res)=>{
     data.save()
     res.redirect('/admin/aevents')
 })
+
+
+
 
 
 
