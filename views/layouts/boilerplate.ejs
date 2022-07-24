@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/public/styles/style.css">
+    <title>Symposium</title>
+    <link rel="icon" type="image/x-icon" href="https://banner2.cleanpng.com/20180401/zqw/kisspng-letter-alphabet-initial-s-letter-s-5ac1839ca71832.6844215415226315806844.jpg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+      input{
+          border-radius:0px 15px !important;
+          border: 2px solid #C8C8C8 !important;
+      }
+
+      .btn{
+        border-radius:0px 15px !important;
+        background-color:#461043 ;
+        width: 100%;
+        color: white;
+        border: none;
+      }
+
+      .btn:hover{
+        background-color: #780a73;
+      }
+
+      .alert{
+        background-color: #780a73;
+        color: white;
+      }
+      small{
+        font-weight: 500;
+      }
+
+      .navbar-light .nav-item.active .nav-link,
+      .navbar-light .nav-item .nav-link:active,
+      .navbar-light .nav-item .nav-link:focus,
+      .navbar-light .nav-item:hover .nav-link {
+          color: #00B159 !important;
+}
+
+  a{
+    text-decoration: none;
+    color:black
+  }
+  a:hover{
+    color: black;
+  }
+  </style>
+
+
+  </head>
+  <body>
+
+    
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#461043;">
+  <div class="container-fluid">
+        <a class="navbar-brand" href="/user/events">
+           <img style="width:150px;" src="https://i.ibb.co/r7Pq48k/Logo2.png" alt="">
+        </a>
+  
+      <ul class="navbar-nav ml-auto" style="margin-left: auto;">
+
+          <% if(!currentUser){ %> 
+          <a style=" color: white" class="nav-link" href="/user/register">Login/Register</a>
+          <% }else{ %> 
+              <span style=" color: white" class="m-auto text-muted">Hi &nbsp<%= currentUser.name  %> |</span>
+          <b><a style=" color: white" class="nav-link" href="/user/logout">Log Out</a></b>
+          <% } %> 
+      </ul>
+
+
+
+
+  </div>
+</nav>
+
+
+    <%-body%>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script>
+      function fun()
+      {
+        a=document.getElementById('date').value
+        b=document.getElementById('st').value
+        c=document.getElementById('et').value
+        if(a && b && c)
+        document.getElementById('form').submit()
+        else
+        {
+          document.getElementById('error').innerHTML='Fill all the fields'
+        }
+      }
+
+      function fun1()
+      {
+        a=document.getElementById('date').value
+        b=document.getElementById('st').value
+        c=document.getElementById('et').value
+        d=document.getElementById('name').value
+        e=document.getElementById('url').value
+        f=document.getElementById('desc').value
+        if(a && b && c && d && e && f)
+        document.getElementById('form').submit()
+        else
+        {
+          document.getElementById('error').innerHTML='Fill all the fields'
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<%-layout('layouts/boilerplate')%>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#ECECEC;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/aevents">All Events</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5 py-3" style="background-color:#ECECEC ;">
+        <div class="row">
+            <div class="row mx-3">
+                <div class="col-10 ">
+                    <h6><b>Upcoming Events</b></h6>
+                </div>
+            </div>
+
+            <div class="row mx-2">
+                <%for(let c of b){ if(c.s_date>new Date()){
+                    %>
+                    <div class="card m-2" style="width:300px">
+                        <img src="https://source.unsplash.com/collection/Yc3bmDpd-R4"
+                            class="card-img-top img-fluid py-2 " alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title fs-5">
+                                <%=c.name%>
+                            </h5>
+                            <i class="card-text fs-6">
+                                <%=c.desc%>
+                            </i>
+                            <a href="/admin/edit/<%=c._id%>" class="btn btn-warning">Edit</a>
+                        </div>
+
+
+
+
+                    </div>
+                    <%}}%>
+
+            </div>
+
+
+
+
+
+            <div class="row mt-5">
+                <div class="row mx-3 mt-5 mb-3">
+
+                    <h6><b>Past Events</b></h6>
+
+                </div>
+
+                <div class="row mx-2">
+                    <%for(let c of b){ if(c.s_date<new Date()){ %>
+                        <div class="card m-2" style="width:300px">
+                            <img src="https://source.unsplash.com/collection/Yc3bmDpd-R4"
+                                class="card-img-top img-fluid py-2 " alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title fs-5">
+                                    <%=c.name%>
+                                </h5>
+                                <i class="card-text fs-6">
+                                    <%=c.desc%>
+                                </i>
+                            </div>
+                        </div>
+                        <%}}%>
+                </div>
+
+            </div>
+
+
+        </div>

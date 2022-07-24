@@ -1,0 +1,86 @@
+<%-layout('layouts/boilerplate')%>
+    <%-partial('partials/u_navbar')%>
+
+    <% if(messages.length>0){ %> 
+    <center>
+        <div class="alert" role="alert" style="width:fit-content">
+            <%=messages%>
+        </div>
+    </center>
+    <% } %> 
+    <% if(typeof a=='object' && a.length>0){
+        %>
+        <div class="container mt-5 py-3" style="background-color:#ECECEC ;">
+            <h6 class="pb-3" style="color:#461043 ;"><b>Upcoming Events</b></h6>
+            <%for(let c of a){
+                if(c.s_date>new Date()){
+                %>
+
+            <div class="card my-3">
+                <div class="row p-2 ">
+                    <div class="col-sm-2">
+                        <img src="https://media.istockphoto.com/vectors/upcoming-events-written-on-speech-bubble-advertising-sign-vector-vector-id1208206133?k=20&m=1208206133&s=612x612&w=0&h=482tKnMJARyu4KL0Imx38Mbu_NEy2oY8IQnbkNvS3DE=" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col-sm-8 my-auto">
+                        <div class="card-body">
+                            <b class="card-title">
+                                <%=c.name%>
+                            </b><br>
+                            <small class="card-text">
+                                <%=c.desc%>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <b><%= day[c.s_date.getMonth()] %> , <%= c.s_date.getDate()%> <%= c.s_date.getFullYear()%> </b>
+                        <h1></h1>
+                        <b><%= c.s_date.getHours() %> : <%= c.s_date.getHours() %> AM - <%= c.s_date.getHours() %> : <%= c.s_date.getMinutes() %>PM </b>
+                        <h1></h1>
+                        <form action="/user/delSchedule/<%=c._id%>" method="post">
+                        <button  class="btn btn-primary">Remove From Calender</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <%}}%>
+        </div>
+
+        <div class="container mt-5 py-3" style="background-color:#ECECEC ;">
+            <h6 class="pb-3" style="color:#461043 ;"><b>Past events</b></h6>
+
+            <%for(let c of a){
+                if(c.s_date<new Date()){
+                %>
+            <div class="card my-3">
+                <div class="row p-2 ">
+                    <div class="col-sm-2">
+                        <img src="https://thumbs.dreamstime.com/b/gesture-time-out-basketball-single-icon-black-style-vector-symbol-stock-illustration-web-91626910.jpg" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col-sm-8 my-auto">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=c.name%></h5>
+                            <p class="card-text"><%=c.desc%></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <b><%= day[c.s_date.getMonth()]   %> , <%= c.s_date.getDate()%> <%= c.s_date.getFullYear()%> </b>
+                        <h1></h1>
+                        <b><%= c.s_date.getHours() %> : <%= c.s_date.getHours() %> AM - <%= c.s_date.getHours() %> : <%= c.s_date.getMinutes() %>PM </b>
+                    </div>
+                </div>
+            </div>
+            <%}} } else {%>
+                <div class="container-fluid w-100 p-5" style="background-color:#ECECEC">
+                    
+                    <div class="container" style="background-color :#ffffff;">
+                        
+                        <h6 class="p-5 pb-0"><b>All Events</b></h6>
+                        <div class=" m-auto" style="width: 40%;">
+                            <img class="img-fluid" src="https://i.im.ge/2022/07/20/F1PDH1.png" alt="F1PDH1.png"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <%}%>
+        </div>
