@@ -41,12 +41,13 @@ passport.deserializeUser(User.deserializeUser())
 const store = new MongoDBStore({
     url: process.env.dbUrl,
     secret,
+    collection:'session',
     touchAfter: 24 * 60 * 60
 });
 
-store.on("error", function (e) {
-    console.log("SESSION STORE ERROR", e)
-})
+// store.on("error", function (e) {
+//     console.log("SESSION STORE ERROR", e)
+// })
 
 
 
