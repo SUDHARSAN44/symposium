@@ -26,7 +26,7 @@ app.set('views',path.join(__dirname,'views'))
 
 const dbUrl = process.env.dbUrl || 'mongodb+srv://sudharsan44:9952723175@symposium.r5l7tod.mongodb.net/test?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 710
-const connectDB=async()=>{await mongoose.connect(dbUrl,{ useNewUrlParser: true, useUnifiedTopology: true})}
+const connectDB=async()=>{await mongoose.connect(dbUrl,{ useNewUrlParser: true, useUnifiedTopology: true}).connection}
 
 connectDB().then(()=>{
     console.log("DB connected")
