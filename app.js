@@ -39,7 +39,7 @@ app.use(passport.initialize())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 const store = new MongoDBStore({
-    url: dbUrl,
+    url: process.env.dbUrl,
     secret,
     touchAfter: 24 * 60 * 60
 });
@@ -136,6 +136,9 @@ app.post('/admin/addEvents',(req,res)=>{
     data.save()
     res.redirect('/admin/aevents')
 })
+
+
+
 
 
 
