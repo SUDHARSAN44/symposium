@@ -15,6 +15,7 @@ const admin =  require('./routes/admin')
 const user =  require('./routes/user')
 const {isLoggedIn} = require('./middleware/isLoggedIn')
 const dotenv = require('dotenv')
+const methodOverride = require('method-override');
 dotenv.config()
 const app = express()
 
@@ -26,24 +27,31 @@ app.set('views',path.join(__dirname,'views'))
 
 const dbUrl = process.env.dbUrl || 'mongodb+srv://sudharsan44:9952723175@symposium.r5l7tod.mongodb.net/test?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 710
-const connectDB=async()=>{await mongoose.connect(dbUrl,{ useNewUrlParser: true, useUnifiedTopology: true}).connection}
+const connectDB=async()=>{await mongoose.connect(dbUrl,{ useNewUrlParser: true, useUnifiedTopology: true})}
 
 connectDB().then(()=>{
     console.log("DB connected")
-}).catch(()=>{
-    console.log("DB not connected")
+}).catch((e)=>{
+    console.log("DB not connected",e)
 })
 
 // const secret ='thisshouldbeabettersecret!';
+app.use(methodOverride('_method'))
 app.use(passport.initialize())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
-const store = new MongoDBStore({
-    url: 'mongodb+srv://sudharsan44:9952723175@symposium.r5l7tod.mongodb.net/test?retryWrites=true&w=majority',
-    secret,
-    collection:'session',
-    touchAfter: 24 * 60 * 60
-});
+
+// app.use(mongosanitize({
+//     replaceWith:'_'
+// }))
+
+
+// const store = new MongoDBStore({
+//     url:dbUrl,
+//     secret,
+//     collection:'session',
+//     touchAfter: 24 * 60 * 60
+// });
 
 // store.on("error", function (e) {
 //     console.log("SESSION STORE ERROR", e)
@@ -51,21 +59,30 @@ const store = new MongoDBStore({
 
 
 
-const sessionConfig = {
-    store,
-    name:'session',
-    secret,
+// const sessionConfig = {
+//     store,
+//     name:'session',
+//     secret,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         httpOnly: true,
+//         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+//         maxAge: 1000 * 60 * 60 * 24 * 7
+//     }
+// }
+app.use(session({
+    secret: secret,
     resave: false,
-    saveUninitialized: true,
-    cookie: {
-        httpOnly: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
-    }
-}
+    saveUninitialized: false,
+    store: new MongoDBStore({     
+        url:dbUrl,
+        secret,
+        collection:'session',
+        touchAfter: 24 * 60 * 60})
+  }))
 
-
-app.use(session(sessionConfig));
+// app.use(session(sessionConfig));
 
 app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()))
