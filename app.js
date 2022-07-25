@@ -39,7 +39,7 @@ app.use(passport.initialize())
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 const store = new MongoDBStore({
-    url: process.env.dbUrl,
+    url: 'mongodb+srv://sudharsan44:9952723175@symposium.r5l7tod.mongodb.net/test?retryWrites=true&w=majority',
     secret,
     collection:'session',
     touchAfter: 24 * 60 * 60
