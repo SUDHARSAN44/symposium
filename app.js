@@ -71,16 +71,16 @@ passport.deserializeUser(User.deserializeUser())
 //         maxAge: 1000 * 60 * 60 * 24 * 7
 //     }
 // }
-app.use(session({
-    secret: secret,
-    resave: false,
-    saveUninitialized: false,
-    store: new MongoDBStore({     
-        url:dbUrl,
-        secret,
-        collection:'session',
-        touchAfter: 24 * 60 * 60})
-  }))
+// app.use(session({
+//     secret: secret,
+//     resave: false,
+//     saveUninitialized: false,
+//     store: new MongoDBStore({     
+//         url:dbUrl,
+//         secret,
+//         collection:'session',
+//         touchAfter: 24 * 60 * 60})
+//   }))
 
 // app.use(session(sessionConfig));
 
