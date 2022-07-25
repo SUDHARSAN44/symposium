@@ -35,7 +35,9 @@ connectDB().then(()=>{
 })
 
 // const secret ='thisshouldbeabettersecret!';
-
+app.use(passport.initialize())
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 const store = new MongoDBStore({
     url: dbUrl,
     secret,
@@ -55,7 +57,7 @@ const sessionConfig = {
     resave: false,
     saveUninitialized: true,
     cookie: {
-        httpOnly: true,
+        //httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -63,11 +65,10 @@ const sessionConfig = {
 
 
 app.use(session(sessionConfig));
-app.use(passport.initialize())
+
 app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()))
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+
 
 
 
